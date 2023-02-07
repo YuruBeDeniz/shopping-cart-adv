@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
   return (
     <NavbarBs sticky="top" className="bg-white shadow-sm mb-3">
-        <Container>
-            <Nav className="me-auto">
+        <Container className="">
+            <Nav className="ms-auto">
                 <Nav.Link to="/" as={NavLink}>
                     Home
                 </Nav.Link>   
