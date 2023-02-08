@@ -4,11 +4,12 @@ import Home from "./pages/Home";
 import Store from "./pages/Store";
 import About from "./pages/About";
 import Navbar from "./components/Navbar";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 function App() {
  
   return (
-    <>
+    <ShoppingCartProvider>
     <Navbar />
     <Container className="mb-4">
       <Routes>
@@ -17,8 +18,11 @@ function App() {
         <Route path="/about" element={<About />} />
       </Routes>
     </Container>
-  </>
+  </ShoppingCartProvider>
   )
 }
 
-export default App
+export default App;
+
+//by wrapping the entire app with ShoppingCartProvider; the entire app has now access
+//to all the things inside of our ShoppingCartProvider value inside ShoppingCartContext 
