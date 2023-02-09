@@ -32,12 +32,17 @@ export function ShoppingCartProvider ( {children}: ShoppingCartProviderProps ) {
     function increaseCartQuantity (id: number) {
         setCartItems(currItems => {
             if(currItems.find(item => item.id === id) == null) {
+                //if we can find an item inside of our cart, that means we have an item
+                //so, we'll check if we dont have an item (== null); if our item doesnt already 
+                //exist in the cart, we need to add it to our cart:
                 return [...currItems, { id, quantity: 1 }]
             } else {
+                //if the item exists, all we need to do is to increment the quantity by 1   
                 return currItems.map(item => {
                     if(item.id === id) {
                         return { ...item, quantity: item.quantity + 1};
                     } else {
+                        //otherwise, we'll return the item as it is, without any changes 
                         return item;
                     }
                 })
@@ -48,7 +53,14 @@ export function ShoppingCartProvider ( {children}: ShoppingCartProviderProps ) {
     function decreaseCartQuantity (id: number) {
         setCartItems(currItems => {
             if(currItems.find(item => item.id === id)?.quantity === 1) {
-                return currItems.filter(item => item.id !== id)
+                //if the quantity is 1, we'll get rid of that item:
+                console.log("filter check: ", currItems.filter(item => item.id !== id));
+                return currItems.filter(item => item.id !== id);
+                //this returns a brand new list of all our items;
+                //all of them are goig to be exactly the same but whichever one we pass the id
+                //(as a parameter in the function) of; we'll remove that from our list of items
+                //yani parametre olarak girilen id'ye eşit olmayan id'ler filtrelenip return edilecek
+                
             } else {
                 return currItems.map(item => {
                     if(item.id === id) {
